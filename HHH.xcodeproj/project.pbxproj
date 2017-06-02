@@ -16,7 +16,7 @@
 		8F3748231E98EA890086ECE9 /* HHHTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3748221E98EA890086ECE9 /* HHHTests.m */; };
 		8F37482F1E993D130086ECE9 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F37482E1E993D130086ECE9 /* FirstViewController.m */; };
 		8F3748321E9A2E160086ECE9 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3748311E9A2E160086ECE9 /* SecondViewController.m */; };
-		8F3748351E9A35430086ECE9 /* UIViewController+Templates.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3748341E9A35430086ECE9 /* UIViewController+Templates.m */; };
+		8F94300A1EE14B9000B4ADDF /* UIViewController+HHH_Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9430091EE14B9000B4ADDF /* UIViewController+HHH_Template.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +47,8 @@
 		8F37482E1E993D130086ECE9 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		8F3748301E9A2E160086ECE9 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		8F3748311E9A2E160086ECE9 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		8F3748331E9A35430086ECE9 /* UIViewController+Templates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Templates.h"; sourceTree = "<group>"; };
-		8F3748341E9A35430086ECE9 /* UIViewController+Templates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Templates.m"; sourceTree = "<group>"; };
+		8F9430081EE14B9000B4ADDF /* UIViewController+HHH_Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HHH_Template.h"; sourceTree = "<group>"; };
+		8F9430091EE14B9000B4ADDF /* UIViewController+HHH_Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HHH_Template.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +98,8 @@
 				8F37482E1E993D130086ECE9 /* FirstViewController.m */,
 				8F3748301E9A2E160086ECE9 /* SecondViewController.h */,
 				8F3748311E9A2E160086ECE9 /* SecondViewController.m */,
-				8F3748331E9A35430086ECE9 /* UIViewController+Templates.h */,
-				8F3748341E9A35430086ECE9 /* UIViewController+Templates.m */,
+				8F9430081EE14B9000B4ADDF /* UIViewController+HHH_Template.h */,
+				8F9430091EE14B9000B4ADDF /* UIViewController+HHH_Template.m */,
 				8F3748111E98EA890086ECE9 /* Main.storyboard */,
 				8F3748141E98EA890086ECE9 /* Assets.xcassets */,
 				8F3748161E98EA890086ECE9 /* LaunchScreen.storyboard */,
@@ -230,12 +230,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F3748351E9A35430086ECE9 /* UIViewController+Templates.m in Sources */,
 				8F3748321E9A2E160086ECE9 /* SecondViewController.m in Sources */,
 				8F3748101E98EA890086ECE9 /* ViewController.m in Sources */,
 				8F37480D1E98EA890086ECE9 /* AppDelegate.m in Sources */,
 				8F37480A1E98EA890086ECE9 /* main.m in Sources */,
 				8F37482F1E993D130086ECE9 /* FirstViewController.m in Sources */,
+				8F94300A1EE14B9000B4ADDF /* UIViewController+HHH_Template.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +438,7 @@
 				8F3748291E98EA890086ECE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8F37482A1E98EA890086ECE9 /* Build configuration list for PBXNativeTarget "HHHTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +447,7 @@
 				8F37482C1E98EA890086ECE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

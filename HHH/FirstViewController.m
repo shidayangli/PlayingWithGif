@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import <ImageIO/ImageIO.h>
+#import "UIViewController+HHH_Template.h"
 
 @interface FirstViewController ()
 
@@ -16,63 +17,27 @@
 @property (nonatomic, assign) size_t imageIndex;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) CGImageSourceRef gifImageSourceRef;
-@property (nonatomic, strong) UIActivityIndicatorView *indicator;
-@property (nonatomic, strong) UIView *maskView;
-@property (nonatomic, strong) UIButton *loadButton;
-@property (nonatomic, strong) UIButton *dismissButton;
 
 @end
 
 @implementation FirstViewController
 
+#pragma mark - life cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setupButtons];
-    [self setupActivityIndicator];
-}
-
-#pragma mark - SetupInitialUIMethods
-
-- (void)setupButtons {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    
-    UIButton *loadButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    loadButton.frame = CGRectMake(screenWidth/2.0 - 50, screenHeight - 110, 100, 100);
-    [loadButton setTitle:@"Load" forState:UIControlStateNormal];
-    [loadButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [loadButton addTarget:self action:@selector(showGif) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:loadButton];
-    self.loadButton = loadButton;
-    
-    UIButton *dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    dismissButton.frame = CGRectMake(screenWidth/2.0 - 50, screenHeight - 220, 100, 100);
-    [dismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
-    [dismissButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [dismissButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:dismissButton];
-    self.dismissButton = dismissButton;
-    
-    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.indicator.center = CGPointMake(screenWidth/2.0, screenHeight/2.0);
-    [self.view addSubview:self.indicator];
-}
-
-- (void)setupActivityIndicator {
-    self.maskView = [[UIView alloc] initWithFrame:self.view.bounds];
-    self.maskView.backgroundColor = [UIColor blackColor];
-    self.maskView.alpha = 0.3;
-    
-    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.indicator.center = self.maskView.center;
+    [self hhh_setupButtons];
+    [self hhh_setupActivityIndicator];
+    [self.hhh_loadButton addTarget:self action:@selector(showGif) forControlEvents:UIControlEventTouchUpInside];
+    [self.hhh_dismissButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - SetupGIFImageMethods
 
 - (void)showGif {
-    [self startIndicatorAnimate];
+    [self hhh_startIndicatorAnimate];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [self setupNecessaryParameters];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -82,7 +47,7 @@
 }
 
 - (void)setupNecessaryParameters {
-    NSURL *gifURL= [NSURL URLWithString:@"https://media.giphy.com/media/xUA7bg3C6oxt0EoMbm/giphy.gif"];
+    NSURL *gifURL= [NSURL URLWithString:@"https://media.giphy.com/media/xUPGcELu51fFQ76TzG/giphy.gif"];
     self.gifImageSourceRef = CGImageSourceCreateWithURL((__bridge CFTypeRef)gifURL, NULL);
     self.imageCount = CGImageSourceGetCount(self.gifImageSourceRef);
     self.imageIndex = 1;
@@ -108,12 +73,12 @@
     [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
     CGImageRef gifFirstFrameImageRef = CGImageSourceCreateImageAtIndex(self.gifImageSourceRef, self.imageIndex - 1, NULL);
     self.imageView.image = [UIImage imageWithCGImage:gifFirstFrameImageRef];
-    [self stopIndicatorAnimate];
-    self.loadButton.hidden = YES;
-    self.dismissButton.hidden = YES;
+    [self hhh_stopIndicatorAnimate];
+    self.hhh_loadButton.hidden = YES;
+    self.hhh_dismissButton.hidden = YES;
     CFRelease(properties);
     CGImageRelease(gifFirstFrameImageRef);
-    [self.indicator stopAnimating];
+    [self.hhh_indicator stopAnimating];
     self.timer = [NSTimer timerWithTimeInterval:0.12 target:self selector:@selector(animate) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
@@ -126,28 +91,14 @@
             [self.timer invalidate];
             self.timer = nil;
             CFRelease(self.gifImageSourceRef);
-            self.loadButton.hidden = NO;
-            self.dismissButton.hidden = NO;
+            self.hhh_loadButton.hidden = NO;
+            self.hhh_dismissButton.hidden = NO;
         }
         return;
     }
     CGImageRef currentFrameImageRef = CGImageSourceCreateImageAtIndex(self.gifImageSourceRef, self.imageIndex - 1, NULL);
     self.imageView.image = [UIImage imageWithCGImage:currentFrameImageRef];
     CGImageRelease(currentFrameImageRef);
-}
-
-#pragma mark - IndicatorAnimateMethods
-
-- (void)stopIndicatorAnimate {
-    [self.indicator stopAnimating];
-    [self.indicator removeFromSuperview];
-    [self.maskView removeFromSuperview];
-}
-
-- (void)startIndicatorAnimate {
-    [self.view addSubview:self.maskView];
-    [self.maskView addSubview:self.indicator];
-    [self.indicator startAnimating];
 }
 
 #pragma mark - DismissMethod

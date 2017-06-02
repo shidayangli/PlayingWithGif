@@ -16,16 +16,13 @@
 
 @implementation ViewController
 
+#pragma mark - life cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    indicator.center = CGPointMake(screenWidth/2.0, screenHeight/2.0);
-    [self.view addSubview:indicator];
-    [indicator startAnimating];
 }
+
+#pragma mark - event response
 
 - (IBAction)firstButtonClick:(id)sender {
     FirstViewController *firstViewController = [[FirstViewController alloc] init];
